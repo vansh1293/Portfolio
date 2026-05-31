@@ -45,14 +45,22 @@ const BackgroundContainer = styled.div`
     left: 0;
     width: 50vmax;
     height: 50vmax;
+    transform: translate(-50%, -50%);
+  }
+
+  .celestial-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     /* We start with the warm sunset glow */
     background: radial-gradient(circle, rgba(255, 136, 34, 0.4) 0%, rgba(255, 136, 34, 0) 70%);
     filter: blur(60px);
-
-    /* We'll use GSAP to move it, so we start it near the top left */
-    transform: translate(-50%, -50%);
   }
+
+
 
   @keyframes twinkle {
     0% {
@@ -94,23 +102,30 @@ const GsapBackground = () => {
         },
       });
 
-      // 1. Move the celestial body in a massive arc across the screen
-      // Starting as a warm massive glow, morphing into a cool silvery glow
+      // 1. Move the celestial body container
       tl.fromTo(
         '.celestial-body',
         {
           x: '15vw',
           y: '20vh',
-          background: 'radial-gradient(circle, rgba(255,136,34,0.4) 0%, rgba(255,136,34,0) 70%)',
         },
         {
           x: '85vw',
           y: '70vh',
-          background: 'radial-gradient(circle, rgba(226,232,240,0.3) 0%, rgba(226,232,240,0) 70%)',
           ease: 'power1.inOut',
         },
         0,
       );
+
+      // 1b. Morph the glow color
+      tl.fromTo(
+        '.celestial-glow',
+        { background: 'radial-gradient(circle, rgba(255,136,34,0.4) 0%, rgba(255,136,34,0) 70%)' },
+        { background: 'radial-gradient(circle, rgba(226,232,240,0.3) 0%, rgba(226,232,240,0) 70%)', ease: 'power1.inOut' },
+        0,
+      );
+
+
 
       // 2. Change the sky from a deep sunset dusk to midnight navy
       tl.fromTo(
@@ -121,9 +136,21 @@ const GsapBackground = () => {
       );
 
       // 3. Fade in the stars as night falls
-      tl.fromTo('.stars-layer', { opacity: 0 }, { opacity: 1, ease: 'power2.in' }, 0);
+      tl.fromTo('.stars-layer',
+        { opacity: 0 },
+        { opacity: 1, ease: 'power2.in' },
+        0
+      );
+
+      // Fix: The page height changes drastically after the loading screen disappears.
+      // We need to tell ScrollTrigger to recalculate its start/end points.
+      const observer = new ResizeObserver(() => {
+        ScrollTrigger.refresh();
+      });
+      observer.observe(document.body);
 
       return () => {
+        observer.disconnect();
         ScrollTrigger.getAll().forEach(t => t.kill());
       };
     }
@@ -149,7 +176,9 @@ const GsapBackground = () => {
         ))}
       </div>
 
-      <div className="celestial-body"></div>
+      <div className="celestial-body">
+        <div className="celestial-glow"></div>
+      </div>
     </BackgroundContainer>
   );
 };
