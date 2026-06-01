@@ -279,10 +279,9 @@ const StyledProject = styled.li`
         transform: scale(1.03) perspective(1000px) rotateY(-3deg) rotateX(3deg);
         box-shadow: 0 20px 40px -15px var(--navy-shadow);
 
-        &:before,
-        .img {
+        &:before {
           background: transparent;
-          filter: none;
+          opacity: 0;
         }
       }
 
@@ -298,20 +297,17 @@ const StyledProject = styled.li`
         z-index: 3;
         transition: var(--transition);
         background-color: var(--navy);
-        mix-blend-mode: screen;
+        opacity: 0.6;
       }
     }
 
     .img {
       border-radius: var(--border-radius);
-      mix-blend-mode: multiply;
-      filter: grayscale(100%) contrast(1) brightness(90%);
 
       @media (max-width: 768px) {
         object-fit: cover;
         width: auto;
         height: 100%;
-        filter: grayscale(100%) contrast(1) brightness(50%);
       }
     }
   }
