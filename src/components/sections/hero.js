@@ -3,6 +3,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import { navDelay, loaderDelay } from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
+import { IconReact, IconNextJs, IconPython, IconNodeJs } from '@components/icons';
 
 const StyledHeroSection = styled.section`
   ${({ theme }) => theme.mixins.flexCenter};
@@ -36,7 +37,8 @@ const StyledHeroSection = styled.section`
       font-weight: 400;
     }
 
-    h2, h3 {
+    h2,
+    h3 {
       font-size: clamp(40px, 6vw, 70px);
       text-align: center;
     }
@@ -53,13 +55,13 @@ const StyledHeroSection = styled.section`
       max-width: 800px;
       margin: 40px auto 10px;
       text-align: left;
-      
+
       .terminal-window {
         background: rgba(5, 5, 5, 0.95);
         border: 1px solid #333;
         border-radius: 10px;
         overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 15px rgba(100,255,218,0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 15px rgba(100, 255, 218, 0.15);
         font-family: var(--font-mono);
       }
 
@@ -73,10 +75,20 @@ const StyledHeroSection = styled.section`
         .dots {
           display: flex;
           gap: 6px;
-          span { width: 12px; height: 12px; border-radius: 50%; }
-          .red { background: #ff5f56; }
-          .yellow { background: #ffbd2e; }
-          .green { background: #27c93f; }
+          span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+          }
+          .red {
+            background: #ff5f56;
+          }
+          .yellow {
+            background: #ffbd2e;
+          }
+          .green {
+            background: #27c93f;
+          }
         }
 
         .title {
@@ -92,7 +104,7 @@ const StyledHeroSection = styled.section`
         color: var(--green);
         font-size: var(--fz-md);
         line-height: 1.8;
-        
+
         .line {
           margin-bottom: 10px;
         }
@@ -109,11 +121,19 @@ const StyledHeroSection = styled.section`
         }
 
         @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
+          0%,
+          100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0;
+          }
         }
-        
-        .prompt { color: var(--green); margin-right: 12px; }
+
+        .prompt {
+          color: var(--green);
+          margin-right: 12px;
+        }
       }
     }
 
@@ -127,7 +147,7 @@ const StyledHeroSection = styled.section`
       overflow: hidden;
       width: 100%;
       padding: 0 10px; /* Prevent clipping */
-      margin: 0 -10px; 
+      margin: 0 -10px;
     }
 
     .slideup-enter .reveal-target {
@@ -143,6 +163,114 @@ const StyledHeroSection = styled.section`
       transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), ease-out;
     }
   }
+
+  .floating-elements {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+
+    .floating-item {
+      position: absolute;
+      color: var(--green);
+      opacity: 0.25;
+      font-family: var(--font-mono);
+      font-size: var(--fz-lg);
+      font-weight: 500;
+      user-select: none;
+      animation-name: floatAnimation;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      text-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+      }
+    }
+
+    /* Pushed to the extreme corners of the 100vw container */
+    .item-1 {
+      top: 12%;
+      left: 8%;
+      animation-duration: 12s;
+    }
+    .item-2 {
+      top: 18%;
+      right: 10%;
+      animation-duration: 15s;
+      animation-delay: 1.5s;
+      animation-name: floatAnimationAlt;
+    }
+    .item-3 {
+      bottom: 15%;
+      left: 12%;
+      animation-duration: 13s;
+      animation-delay: 0.5s;
+    }
+    .item-4 {
+      bottom: 25%;
+      right: 8%;
+      animation-duration: 14s;
+      animation-delay: 2s;
+      animation-name: floatAnimationAlt;
+    }
+
+    .item-5 {
+      bottom: 10%;
+      right: 15%;
+      animation-duration: 11s;
+      animation-delay: 1s;
+    }
+    .item-6 {
+      top: 10%;
+      right: 25%;
+      animation-duration: 16s;
+      animation-delay: 2.5s;
+      animation-name: floatAnimationAlt;
+    }
+    .item-7 {
+      bottom: 35%;
+      left: 6%;
+      animation-duration: 12s;
+      animation-delay: 0.8s;
+    }
+    .item-8 {
+      top: 35%;
+      left: 4%;
+      animation-duration: 14s;
+      animation-delay: 1.2s;
+      animation-name: floatAnimationAlt;
+    }
+
+    @media (max-width: 1000px) {
+      display: none; /* Hide on smaller screens to prevent any overlap */
+    }
+  }
+
+  @keyframes floatAnimation {
+    0% {
+      transform: translate(0px, 0px) rotate(-2deg);
+    }
+    100% {
+      transform: translate(20px, -60px) rotate(4deg);
+    }
+  }
+
+  @keyframes floatAnimationAlt {
+    0% {
+      transform: translate(0px, 0px) rotate(2deg);
+    }
+    100% {
+      transform: translate(-25px, -50px) rotate(-3deg);
+    }
+  }
 `;
 
 const Hero = () => {
@@ -150,7 +278,8 @@ const Hero = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const [typedText, setTypedText] = useState('');
 
-  const bioText = "I'm a Full Stack Developer specializing in building scalable web applications, AI-powered products, and real-time systems. Currently, I'm a Computer Science undergraduate at Jaypee Institute of Information Technology.";
+  const bioText =
+    'I\'m a Full Stack Developer specializing in building scalable web applications, AI-powered products, and real-time systems. Currently, I\'m a Computer Science undergraduate at Jaypee Institute of Information Technology.';
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -163,7 +292,7 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    if (!isMounted || prefersReducedMotion) return;
+    if (!isMounted || prefersReducedMotion) {return;}
 
     let i = 0;
     let typingInterval;
@@ -180,13 +309,15 @@ const Hero = () => {
 
     return () => {
       clearTimeout(startDelay);
-      if (typingInterval) clearInterval(typingInterval);
+      if (typingInterval) {clearInterval(typingInterval);}
     };
   }, [isMounted, prefersReducedMotion]);
 
   const one = <h1>Hi, my name is</h1>;
   const two = <h2 className="big-heading">Vansh Arora.</h2>;
-  const three = <h3 className="big-heading">Software Engineer focused on AI and scalable systems.</h3>;
+  const three = (
+    <h3 className="big-heading">Software Engineer focused on AI and scalable systems.</h3>
+  );
   const four = (
     <div className="terminal-wrapper">
       <div className="terminal-window">
@@ -200,7 +331,7 @@ const Hero = () => {
         </div>
         <div className="terminal-body">
           <div className="line">
-            <span className="prompt">&gt;</span> 
+            <span className="prompt">&gt;</span>
             {typedText}
             <span className="cursor"></span>
           </div>
@@ -211,7 +342,7 @@ const Hero = () => {
   const five = (
     <a
       className="email-link"
-      href="mailto:vansh.arora@example.com"
+      href="mailto:aroravansh.com@gmail.com"
       target="_blank"
       rel="noreferrer">
       Get In Touch
@@ -223,11 +354,32 @@ const Hero = () => {
     { content: two, className: 'slideup' },
     { content: three, className: 'slideup' },
     { content: four, className: 'fadeup' },
-    { content: five, className: 'fadeup' }
+    { content: five, className: 'fadeup' },
   ];
 
   return (
     <StyledHeroSection>
+      {isMounted && (
+        <div className="floating-elements">
+          <div className="floating-item item-1" style={{ width: '70px' }}>
+            <IconPython />
+          </div>
+          <div className="floating-item item-2" style={{ width: '70px' }}>
+            <IconReact />
+          </div>
+          <div className="floating-item item-3" style={{ width: '70px' }}>
+            <IconNextJs />
+          </div>
+          <div className="floating-item item-4" style={{ width: '70px' }}>
+            <IconNodeJs />
+          </div>
+
+          <div className="floating-item item-5">import {'{ AI }'}</div>
+          <div className="floating-item item-6">SELECT * FROM systems</div>
+          <div className="floating-item item-7">npm run dev</div>
+          <div className="floating-item item-8">&lt;Developer /&gt;</div>
+        </div>
+      )}
       <div className="hero-content">
         {prefersReducedMotion ? (
           <>
@@ -240,14 +392,14 @@ const Hero = () => {
             {isMounted &&
               items.map((item, i) => (
                 <CSSTransition key={i} classNames={item.className} timeout={loaderDelay}>
-                  <div 
-                    className={item.className === 'slideup' ? 'mask-wrapper' : ''} 
-                    style={{ transitionDelay: `${i + 1}00ms` }}
-                  >
-                    <div 
+                  <div
+                    className={item.className === 'slideup' ? 'mask-wrapper' : ''}
+                    style={{ transitionDelay: `${i + 1}00ms` }}>
+                    <div
                       className={item.className === 'slideup' ? 'reveal-target' : ''}
-                      style={item.className === 'slideup' ? { transitionDelay: `${i + 1}00ms` } : {}}
-                    >
+                      style={
+                        item.className === 'slideup' ? { transitionDelay: `${i + 1}00ms` } : {}
+                      }>
                       {item.content}
                     </div>
                   </div>

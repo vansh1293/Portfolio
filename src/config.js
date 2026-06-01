@@ -4,11 +4,11 @@ module.exports = {
   socialMedia: [
     {
       name: 'GitHub',
-      url: 'https://github.com/vansharora',
+      url: 'https://github.com/vansh1293',
     },
     {
       name: 'Linkedin',
-      url: 'https://www.linkedin.com/in/vansharora',
+      url: 'https://www.linkedin.com/in/vansh-arora-52a0ab2a7/',
     },
   ],
 
@@ -18,8 +18,16 @@ module.exports = {
       url: '/#about',
     },
     {
+      name: 'Skills',
+      url: '/#skills',
+    },
+    {
       name: 'Experience',
       url: '/#jobs',
+    },
+    {
+      name: 'Extracurriculars',
+      url: '/#leadership',
     },
     {
       name: 'Work',
@@ -37,10 +45,10 @@ module.exports = {
     darkNavy: '#000000',
   },
 
-  srConfig: (delay = 200, viewFactor = 0.25) => ({
+  srConfig: (delay = 200, viewFactor = 0.1) => ({
     origin: 'bottom',
-    distance: '20px',
-    duration: 500,
+    distance: '15px',
+    duration: 400,
     delay,
     rotate: { x: 0, y: 0, z: 0 },
     opacity: 0,

@@ -22,6 +22,21 @@ const BackgroundContainer = styled.div`
     background-color: #0a0a0a; /* Fallback midnight */
   }
 
+  .grid-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 50px 50px;
+    background-image: linear-gradient(to right, rgba(100, 255, 218, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(100, 255, 218, 0.12) 1px, transparent 1px);
+    animation: panGrid 20s linear infinite;
+    /* This mask makes the grid smoothly fade out towards the bottom of the screen */
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 80%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 80%);
+  }
+
   .stars-layer {
     position: absolute;
     top: 0;
@@ -59,9 +74,14 @@ const BackgroundContainer = styled.div`
     background: radial-gradient(circle, rgba(255, 136, 34, 0.4) 0%, rgba(255, 136, 34, 0) 70%);
     filter: blur(60px);
   }
-
-
-
+  @keyframes panGrid {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 50px;
+    }
+  }
   @keyframes twinkle {
     0% {
       opacity: 0.1;
@@ -121,11 +141,12 @@ const GsapBackground = () => {
       tl.fromTo(
         '.celestial-glow',
         { background: 'radial-gradient(circle, rgba(255,136,34,0.4) 0%, rgba(255,136,34,0) 70%)' },
-        { background: 'radial-gradient(circle, rgba(226,232,240,0.3) 0%, rgba(226,232,240,0) 70%)', ease: 'power1.inOut' },
+        {
+          background: 'radial-gradient(circle, rgba(226,232,240,0.3) 0%, rgba(226,232,240,0) 70%)',
+          ease: 'power1.inOut',
+        },
         0,
       );
-
-
 
       // 2. Change the sky from a deep sunset dusk to midnight navy
       tl.fromTo(
@@ -136,11 +157,10 @@ const GsapBackground = () => {
       );
 
       // 3. Fade in the stars as night falls
-      tl.fromTo('.stars-layer',
-        { opacity: 0 },
-        { opacity: 1, ease: 'power2.in' },
-        0
-      );
+      tl.fromTo('.stars-layer', { opacity: 0 }, { opacity: 1, ease: 'power2.in' }, 0);
+
+      // 4. Fade out the grid pattern as we scroll to the stars
+      tl.fromTo('.grid-layer', { opacity: 1 }, { opacity: 0, ease: 'power1.inOut' }, 0);
 
       // Fix: The page height changes drastically after the loading screen disappears.
       // We need to tell ScrollTrigger to recalculate its start/end points.
@@ -159,6 +179,7 @@ const GsapBackground = () => {
   return (
     <BackgroundContainer ref={containerRef} aria-hidden="true">
       <div className="sky-bg"></div>
+      <div className="grid-layer"></div>
 
       <div className="stars-layer">
         {stars.map(star => (

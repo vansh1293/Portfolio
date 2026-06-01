@@ -178,7 +178,6 @@ const Jobs = () => {
               company
               location
               range
-              url
             }
             html
           }
@@ -288,9 +287,13 @@ const Jobs = () => {
                       <span>{title}</span>
                       <span className="company">
                         &nbsp;@&nbsp;
-                        <a href={url} className="inline-link">
-                          {company}
-                        </a>
+                        {url ? (
+                          <a href={url} className="inline-link">
+                            {company}
+                          </a>
+                        ) : (
+                          <span style={{ color: 'var(--green)' }}>{company}</span>
+                        )}
                       </span>
                     </h3>
 

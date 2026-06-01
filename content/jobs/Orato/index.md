@@ -1,13 +1,10 @@
 ---
-date: '2023-05-01'
+date: '2025-11-01'
 title: 'Software Developer Intern'
 company: 'Orato'
-location: 'Remote'
-range: 'May 2023 - Aug 2023'
-url: 'https://orato.ai/'
+location: 'Dubai, UAE'
+range: 'November 2025 - January 2026'
 ---
 
-- Helped architect the backend infrastructure for an AI voice platform using Large Language Models (LLMs).
-- Implemented real-time communication technologies to facilitate seamless voice interactions.
-- Collaborated with a team of developers to build and scale backend systems using Node.js and related technologies.
-- Optimized database queries and system performance for high-traffic environments.
+- Architected a custom backend infrastructure from scratch for an AI voice platform, integrating Large Language Models (LLMs) and real-time communication protocols to enable scalable, emotionally intelligent two-way conversations.
+- Optimized application performance by diagnosing and resolving critical frontend and backend bugs, significantly enhancing system stability for automated outbound calling and lead qualification features.

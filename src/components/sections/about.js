@@ -125,8 +125,6 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['React', 'Next.js', 'Node.js', 'MongoDB', 'AI / LLMs', 'LangChain'];
-
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
       <h2 className="numbered-heading">About Me</h2>
@@ -137,34 +135,29 @@ const About = () => {
             <p>
               Hello! My name is Vansh and I enjoy building products that combine modern web
               development, AI, and automation. I'm a Computer Science undergraduate at Jaypee
-              Institute of Information Technology with experience building scalable web
+              Institute of Information Technology with experience in building scalable web
               applications, AI-powered products, and real-time systems.
             </p>
 
             <p>
               Previously, I worked as a Software Developer Intern at{' '}
-              <a href="https://orato.ai/">Orato</a>, where I helped architect backend infrastructure
-              for an AI voice platform using LLMs and real-time communication technologies.
+              <span style={{ color: 'var(--green)' }}>Orato</span>, where I helped architect backend
+              infrastructure for an AI voice platform using LLMs and real-time communication
+              technologies.
             </p>
 
             <p>
               My main focus these days is building robust, AI-powered web applications that deliver
               exceptional performance and user experience.
             </p>
-
-            <p>Here are a few technologies I’ve been working with recently:</p>
           </div>
-
-          <ul className="skills-list">
-            {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
-          </ul>
         </StyledText>
 
         <StyledPic>
           <div className="wrapper">
             <StaticImage
               className="img"
-              src="../../images/me.jpg"
+              src="../../images/vansh.jpg"
               width={500}
               quality={95}
               formats={['AUTO', 'WEBP', 'AVIF']}
