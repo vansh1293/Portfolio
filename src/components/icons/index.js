@@ -18,3 +18,4 @@ export { default as IconReact } from './react';
 export { default as IconNextJs } from './nextjs';
 export { default as IconPython } from './python';
 export { default as IconNodeJs } from './nodejs';
+export { default as IconLeetCode } from './leetcode';

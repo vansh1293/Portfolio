@@ -10,6 +10,10 @@ module.exports = {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/vansh-arora-52a0ab2a7/',
     },
+    {
+      name: 'LeetCode',
+      url: 'https://leetcode.com/u/vansh1_293/',
+    },
   ],
 
   navLinks: [
