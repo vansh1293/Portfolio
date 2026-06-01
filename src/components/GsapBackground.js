@@ -122,16 +122,18 @@ const GsapBackground = () => {
         },
       });
 
+      const isMobile = window.innerWidth <= 768;
+
       // 1. Move the celestial body container
       tl.fromTo(
         '.celestial-body',
         {
-          x: '15vw',
-          y: '20vh',
+          x: isMobile ? '0vw' : '15vw',
+          y: isMobile ? '0vh' : '20vh',
         },
         {
-          x: '85vw',
-          y: '70vh',
+          x: isMobile ? '50vw' : '85vw',
+          y: isMobile ? '40vh' : '70vh',
           ease: 'power1.inOut',
         },
         0,
