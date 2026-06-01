@@ -5,6 +5,7 @@
  */
 
 const path = require('path');
+require('events').EventEmitter.defaultMaxListeners = 15;
 
 // https://www.gatsbyjs.org/docs/node-apis/#onCreateWebpackConfig
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
