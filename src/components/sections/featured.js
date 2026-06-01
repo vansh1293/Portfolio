@@ -49,7 +49,7 @@ const StyledProject = styled.li`
       }
       @media (max-width: 768px) {
         grid-column: 1 / -1;
-        padding: 40px 40px 30px;
+        padding: 20px 0 0 0;
         text-align: left;
       }
       @media (max-width: 480px) {
@@ -77,9 +77,8 @@ const StyledProject = styled.li`
       margin-right: -10px;
 
       @media (max-width: 768px) {
-        justify-content: flex-start;
-        margin-left: -10px;
-        margin-right: 0;
+        justify-content: flex-end;
+        margin: 0;
       }
     }
     .project-image {
@@ -101,12 +100,16 @@ const StyledProject = styled.li`
     }
 
     @media (max-width: 768px) {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-areas: 
+        "title links"
+        "overline links";
       grid-column: 1 / -1;
-      padding: 40px 40px 30px;
+      grid-row: 2;
+      padding: 20px 0 0 0;
+      align-items: center;
+      text-align: left;
       z-index: 5;
     }
 
@@ -118,6 +121,11 @@ const StyledProject = styled.li`
   .project-overline {
     margin: 10px 0;
     color: var(--green);
+    @media (max-width: 768px) {
+      grid-area: overline;
+      margin: 5px 0 0 0;
+      color: var(--slate);
+    }
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
     font-weight: 400;
@@ -126,6 +134,10 @@ const StyledProject = styled.li`
   .project-title {
     color: var(--lightest-slate);
     font-size: clamp(24px, 5vw, 28px);
+    @media (max-width: 768px) {
+      grid-area: title;
+      margin: 0;
+    }
 
     @media (min-width: 768px) {
       margin: 0 0 20px;
@@ -170,16 +182,7 @@ const StyledProject = styled.li`
     }
 
     @media (max-width: 768px) {
-      padding: 20px 0;
-      background-color: transparent;
-      backdrop-filter: none;
-      border: none;
-      box-shadow: none;
-
-      &:hover {
-        box-shadow: none;
-        transform: none;
-      }
+      display: none;
     }
 
     a {
@@ -210,12 +213,7 @@ const StyledProject = styled.li`
     }
 
     @media (max-width: 768px) {
-      margin: 10px 0;
-
-      li {
-        margin: 0 10px 5px 0;
-        color: var(--lightest-slate);
-      }
+      display: none;
     }
   }
 
@@ -226,10 +224,21 @@ const StyledProject = styled.li`
     margin-top: 10px;
     margin-left: -10px;
     color: var(--lightest-slate);
+    @media (max-width: 768px) {
+      grid-area: links;
+      margin: 0;
+    }
 
     a {
       ${({ theme }) => theme.mixins.flexCenter};
       padding: 10px;
+      @media (max-width: 768px) {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--border-radius);
+        margin-left: 10px;
+        padding: 12px;
+      }
 
       &.external {
         svg {
@@ -260,8 +269,9 @@ const StyledProject = styled.li`
 
     @media (max-width: 768px) {
       grid-column: 1 / -1;
-      height: 100%;
-      opacity: 0.25;
+      grid-row: 1;
+      height: 250px;
+      opacity: 1;
     }
 
     a {
@@ -286,18 +296,22 @@ const StyledProject = styled.li`
       }
 
       &:before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 3;
-        transition: var(--transition);
-        background-color: var(--navy);
-        opacity: 0.6;
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 3;
+          transition: var(--transition);
+          background-color: var(--navy);
+          mix-blend-mode: screen;
+          @media (max-width: 768px) {
+            display: none;
+          }
+        }
       }
     }
 
@@ -306,7 +320,7 @@ const StyledProject = styled.li`
 
       @media (max-width: 768px) {
         object-fit: cover;
-        width: auto;
+        width: 100%;
         height: 100%;
       }
     }
@@ -370,7 +384,6 @@ const Featured = () => {
             return (
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
                 <div className="project-content">
-                  <div>
                     <p className="project-overline">Featured Project</p>
 
                     <h3 className="project-title">
@@ -407,7 +420,6 @@ const Featured = () => {
                         </a>
                       )}
                     </div>
-                  </div>
                 </div>
 
                 <div className="project-image">

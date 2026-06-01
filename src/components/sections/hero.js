@@ -249,9 +249,6 @@ const StyledHeroSection = styled.section`
       animation-name: floatAnimationAlt;
     }
 
-    @media (max-width: 1000px) {
-      display: none; /* Hide on smaller screens to prevent any overlap */
-    }
   }
 
   @keyframes floatAnimation {

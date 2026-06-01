@@ -35,32 +35,28 @@ const StyledTabList = styled.div`
   @media (max-width: 600px) {
     display: flex;
     overflow-x: auto;
-    width: calc(100% + 100px);
-    padding-left: 50px;
-    margin-left: -50px;
+    width: 100%;
     margin-bottom: 30px;
   }
   @media (max-width: 480px) {
-    width: calc(100% + 50px);
-    padding-left: 25px;
-    margin-left: -25px;
+    width: 100%;
   }
 
   li {
     &:first-of-type {
       @media (max-width: 600px) {
-        margin-left: 50px;
+        margin-left: 0;
       }
       @media (max-width: 480px) {
-        margin-left: 25px;
+        margin-left: 0;
       }
     }
     &:last-of-type {
       @media (max-width: 600px) {
-        padding-right: 50px;
+        padding-right: 0;
       }
       @media (max-width: 480px) {
-        padding-right: 25px;
+        padding-right: 0;
       }
     }
   }
@@ -89,7 +85,7 @@ const StyledTabButton = styled.button`
     min-width: 120px;
     padding: 0 15px;
     border-left: 0;
-    border-bottom: 2px solid var(--lightest-navy);
+    border-bottom: 2px solid ${({ isActive }) => (isActive ? 'var(--green)' : 'var(--lightest-navy)')};
     text-align: center;
   }
 
@@ -113,16 +109,7 @@ const StyledHighlight = styled.div`
   transition-delay: 0.1s;
 
   @media (max-width: 600px) {
-    top: auto;
-    bottom: 0;
-    width: 100%;
-    max-width: var(--tab-width);
-    height: 2px;
-    margin-left: 50px;
-    transform: translateX(calc(${({ activeTabId }) => activeTabId} * var(--tab-width)));
-  }
-  @media (max-width: 480px) {
-    margin-left: 25px;
+    display: none;
   }
 `;
 
