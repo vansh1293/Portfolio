@@ -73,6 +73,7 @@ const StyledSkillsSection = styled.section`
       font-family: var(--font-mono);
       font-weight: bold;
       transition: all 0.3s ease;
+      filter: grayscale(100%) opacity(0.35);
     }
 
     span {
