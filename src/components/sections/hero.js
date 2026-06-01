@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { navDelay, loaderDelay } from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
 import { IconReact, IconNextJs, IconPython, IconNodeJs } from '@components/icons';
+import TextType from '@components/TextType';
+import BlurText from '@components/BlurText';
 
 const StyledHeroSection = styled.section`
   ${({ theme }) => theme.mixins.flexCenter};
@@ -146,8 +148,8 @@ const StyledHeroSection = styled.section`
     .mask-wrapper {
       overflow: hidden;
       width: 100%;
-      padding: 0 10px; /* Prevent clipping */
-      margin: 0 -10px;
+      padding: 50px 10px 20px; /* Prevent clipping */
+      margin: -50px -10px -20px;
     }
 
     .slideup-enter .reveal-target {
@@ -310,10 +312,36 @@ const Hero = () => {
     };
   }, [isMounted, prefersReducedMotion]);
 
-  const one = <h1>Hi, my name is</h1>;
-  const two = <h2 className="big-heading">Vansh Arora.</h2>;
+  const one = (
+    <BlurText
+      as="h1"
+      text="Hi, my name is"
+      delay={50}
+      animateBy="words"
+      direction="top"
+    />
+  );
+  const two = (
+    <BlurText
+      as="h2"
+      className="big-heading"
+      text="Vansh Arora."
+      delay={100}
+      animateBy="words"
+      direction="top"
+    />
+  );
   const three = (
-    <h3 className="big-heading">Software Engineer focused on AI and scalable systems.</h3>
+    <TextType
+      as="h3"
+      className="big-heading"
+      text="Software Developer | Full Stack Engineer"
+      typingSpeed={75}
+      pauseDuration={1500}
+      showCursor={true}
+      cursorCharacter="|"
+      loop={false}
+    />
   );
   const four = (
     <div className="terminal-wrapper">
