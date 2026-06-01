@@ -136,7 +136,7 @@ const GsapBackground = () => {
         {
           xPercent: -50,
           yPercent: -50,
-          x: isMobile ? '50vw' : '85vw',
+          x: '85vw',
           y: '70vh',
           ease: 'power1.inOut',
         },
