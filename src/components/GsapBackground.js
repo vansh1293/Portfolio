@@ -128,10 +128,14 @@ const GsapBackground = () => {
       tl.fromTo(
         '.celestial-body',
         {
+          xPercent: -50,
+          yPercent: -50,
           x: isMobile ? '0vw' : '15vw',
           y: isMobile ? '0vh' : '20vh',
         },
         {
+          xPercent: -50,
+          yPercent: -50,
           x: isMobile ? '50vw' : '85vw',
           y: isMobile ? '40vh' : '70vh',
           ease: 'power1.inOut',
