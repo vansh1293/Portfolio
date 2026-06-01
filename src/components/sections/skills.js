@@ -23,6 +23,7 @@ import {
   SiPostman,
   SiDocker,
   SiVercel,
+  SiLangchain,
 } from 'react-icons/si';
 import { FaHtml5, FaCss3Alt, FaDatabase, FaBrain, FaLayerGroup } from 'react-icons/fa';
 import { DiVisualstudio } from 'react-icons/di';
@@ -66,15 +67,6 @@ const StyledSkillsSection = styled.section`
       transition: all 0.3s ease;
     }
 
-    .text-icon {
-      font-size: 35px;
-      color: rgba(255, 255, 255, 0.15);
-      margin-bottom: 12px;
-      font-family: var(--font-mono);
-      font-weight: bold;
-      transition: all 0.3s ease;
-      filter: grayscale(100%) opacity(0.35);
-    }
 
     span {
       font-family: var(--font-mono);
@@ -88,8 +80,7 @@ const StyledSkillsSection = styled.section`
     &:hover {
       transform: translateY(-5px);
 
-      svg,
-      .text-icon {
+      svg {
         color: var(--green);
         filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.5));
       }
@@ -128,7 +119,7 @@ const Skills = () => {
     { name: 'Express.js', icon: <SiExpress /> },
     { name: 'Socket.io', icon: <SiSocketdotio /> },
     { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
-    { name: 'LangChain', icon: <span className="text-icon">🦜🔗</span> },
+    { name: 'LangChain', icon: <SiLangchain /> },
     { name: 'SQL', icon: <FaDatabase /> },
     { name: 'PostgreSQL', icon: <SiPostgresql /> },
     { name: 'MongoDB', icon: <SiMongodb /> },
