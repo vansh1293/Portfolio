@@ -191,9 +191,52 @@ const StyledHeroSection = styled.section`
       text-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
 
       svg {
-        width: 100%;
-        height: 100%;
+        width: 70px;
+        height: 70px;
         fill: currentColor;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .floating-item {
+        font-size: 10px;
+        opacity: 0.15;
+        svg {
+          width: 35px;
+          height: 35px;
+        }
+      }
+      .item-1 {
+        top: 5%;
+        left: 2%;
+      }
+      .item-2 {
+        top: 12%;
+        right: 2%;
+      }
+      .item-3 {
+        bottom: 10%;
+        left: 2%;
+      }
+      .item-4 {
+        bottom: 20%;
+        right: 2%;
+      }
+      .item-5 {
+        bottom: 5%;
+        right: 2%;
+      }
+      .item-6 {
+        top: 6%;
+        right: 2%;
+      }
+      .item-7 {
+        bottom: 28%;
+        left: 2%;
+      }
+      .item-8 {
+        top: 25%;
+        left: 2%;
       }
     }
 
@@ -250,7 +293,6 @@ const StyledHeroSection = styled.section`
       animation-delay: 1.2s;
       animation-name: floatAnimationAlt;
     }
-
   }
 
   @keyframes floatAnimation {
@@ -291,7 +333,9 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    if (!isMounted || prefersReducedMotion) {return;}
+    if (!isMounted || prefersReducedMotion) {
+      return;
+    }
 
     let i = 0;
     let typingInterval;
@@ -308,18 +352,14 @@ const Hero = () => {
 
     return () => {
       clearTimeout(startDelay);
-      if (typingInterval) {clearInterval(typingInterval);}
+      if (typingInterval) {
+        clearInterval(typingInterval);
+      }
     };
   }, [isMounted, prefersReducedMotion]);
 
   const one = (
-    <BlurText
-      as="h1"
-      text="Hi, my name is"
-      delay={50}
-      animateBy="words"
-      direction="top"
-    />
+    <BlurText as="h1" text="Hi, my name is" delay={50} animateBy="words" direction="top" />
   );
   const two = (
     <BlurText
@@ -386,16 +426,16 @@ const Hero = () => {
     <StyledHeroSection>
       {isMounted && (
         <div className="floating-elements">
-          <div className="floating-item item-1" style={{ width: '70px' }}>
+          <div className="floating-item item-1">
             <IconPython />
           </div>
-          <div className="floating-item item-2" style={{ width: '70px' }}>
+          <div className="floating-item item-2">
             <IconReact />
           </div>
-          <div className="floating-item item-3" style={{ width: '70px' }}>
+          <div className="floating-item item-3">
             <IconNextJs />
           </div>
-          <div className="floating-item item-4" style={{ width: '70px' }}>
+          <div className="floating-item item-4">
             <IconNodeJs />
           </div>
 

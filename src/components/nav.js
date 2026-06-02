@@ -96,9 +96,12 @@ const StyledLinks = styled.div`
 
   ol {
     ${({ theme }) => theme.mixins.flexBetween};
-    padding: 0;
+    padding: 5px 20px;
     margin: 0;
     list-style: none;
+    background-color: rgba(23, 23, 23, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
 
     li {
       margin: 0 5px;
