@@ -3,7 +3,6 @@ date: '2024-01-15'
 title: 'Candidate Data Transformer'
 cover: './cover.png'
 github: 'https://github.com/vansh1293/candidate-transformer'
-external: 'https://github.com/vansh1293/candidate-transformer'
 tech:
   - FastAPI
   - Python
